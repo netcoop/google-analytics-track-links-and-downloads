@@ -1,12 +1,7 @@
 /**
  * Enable tracking of downloads, external links and mailto- and tel-links with Google Analytics
- * Works with TYPO3-encrypted mailto-links using TypoScript setting 'spamProtectEmailAddresses'
- * Date: 12/12/13
- *
- * Before going online, check and change the following settings:
- *	- Set testMode = false (ln 12)
- *	- Fill in your Google Analytics code and domain (ln 21)
- *	- Set the domains that should be treated as local in aliasDomains, if necessary (ln 37)
+ * https://github.com/netcoop/google-analytics-track-links-and-downloads
+ * v0.1 Date: 21/12/13
  */
 
 var testMode = true;	// true will not trigger GA but launch an alert-box, and links will not work, for easy testing
@@ -17,7 +12,6 @@ if (!testMode) {
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
 	ga('create', 'UA-xxxxxxx-xx', 'domain.com');
 	ga('send', 'pageview');
 }
