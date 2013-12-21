@@ -12,3 +12,6 @@ Before going online, check and change the following settings:
 * Fill in your Google Analytics code and domain (ln 15)
 * Set the domains that should be treated as local in aliasDomains, if necessary (ln 31)
 
+Script is based on a script found here:
+http://www.blastam.com/blog/index.php/2013/03/how-to-track-downloads-in-google-analytics-v2/
+
