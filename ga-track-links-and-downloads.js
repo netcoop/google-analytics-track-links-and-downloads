@@ -41,32 +41,33 @@ if (typeof jQuery != 'undefined') {
 				href = decryptString(decrypt[1], 3);	// 3 should match the TypoScript setting spamProtectEmailAddresses
 			}
 			if (!/^javascript:/i.test(href)) {
-				var elEv = [];
+				var elEv = {
+					'label': href.substring(1, href.length - 1),
+					'action': 'Click',
+					'loc': href
+				}
 				if (/^mailto\:/i.test(href)) {
 					elEv.category = "Email";
 					elEv.action = "Click";
 					elEv.label = href.replace(/^mailto\:/i, '');
-					elEv.loc = href;
 				}
 				else if (filetypes.test(href)) {
 					var extension = (/[.]/.exec(href)) ? /[^.]+$/.exec(href) : undefined;
 					elEv.category = "Download";
 					elEv.action = "Click-" + extension[0];
-					elEv.label = href.replace(/ /g,"-");
-					elEv.loc = baseHref + href;
+					elEv.label = href.replace(/ /g,"_").replace(/%20/g,"_").replace(/^https?\:\/\//i, '');
 				}
-				else if (/^https?\:\/\//i.test(href) && !isThisDomain) {
+				else if (/^https?\:\/\//i.test(href)) {
 					elEv.category = "Externe Link";
 					elEv.action = "Click";
 					elEv.label = href.replace(/^https?\:\/\//i, '');
 					elEv.non_i = true;
-					elEv.loc = href;
+					if (isThisDomain) track = false;
 				}
 				else if (/^tel\:/i.test(href)) {
 					elEv.category = "Telephone";
 					elEv.action = "Click";
 					elEv.label = href.replace(/^tel\:/i, '');
-					elEv.loc = href;
 				}
 				else track = false;
 
